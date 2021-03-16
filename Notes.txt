@@ -4,8 +4,8 @@ Lab-1:
 >> clc				# clear command window
 >> clear all			# clear workspace
 
-Matrix:
-.......
+## Matrix:
+..........
 >> x = [1, 2, 3; 4, 5, 6] 	# 2D array
 >> z = x./y			# elementwise division
 >> x = [-2: 2]			# yields [-2, -1, 0, 1, 2]
@@ -14,9 +14,57 @@ Matrix:
 >> zeros(2, 4)			# yields 2*4 matrix with zeros
 >> ones(2, 4)
 
-Methods:
-........
+## Methods:
+...........
 - subplot(subplot(2, 1, 1)      # (#r, #c, which section)
 - plot(t, wave)			# plot wave
 - stem(t, wave)			# plot points
 - xlabel/ylabel('Name yourself for axes')
+
+# To run code of Editor:
+- Select EDITOR tab and Click Run.
+
+-------
+Lab-2:
+-------
+
+# Declare Function
+- function [return values] = func_name(parameters)
+
+# Impulse Sequence Commands:    [Write them into cmd after declaring the functions in Editor]
+>> n = [-2:3]
+>> x = 2*impulse_sequence(-2, -2, 3)+(-1)*impulse_sequence(-1, -2, 3) + 2*impulse_sequence(0, -2, 3) + 3*impulse_sequence(1, -2, 3) + (-2)*impulse_sequence(2, -2, 3)+ 1*impulse_sequence(3, -2, 3)
+>> stem(n, x) [to see output]
+
+# Step Seq:
+>> n = [-5, 5]
+>> x = step_sequence(3, -5, 5)
+
+# Complex:
+>> x = exp((2+3j)*n)    #j denotes (by default) imaginary number
+>> plot(n, x)
+
+# Signal Addition:
+>> x1 = [2, -1, 3, -2, 1, 1, 2]
+>> n1 = [-2, 4]
+>> x2 = [2, 1, 1, 2]
+>> n2 = [0:3]
+>> [y,n] = sigadd(x1, n1, x2, n2)
+>> stem(n, y)
+
+# Example 2.2:
+(a)
+>> [x11,n11] = sigshift(x,n,5); [x12,n12] = sigshift(x,n,-4);
+>> [x1,n1] = sigadd(2*x11,n11,-3*x12,n12);
+>> subplot(2,1,1); stem(n1,x1); title('Sequence in Example 2.2a')
+>> xlabel('n'); ylabel('x1(n)');
+
+(b)
+>> [x21,n21] = sigfold(x,n); [x21,n21] = sigshift(x21,n21,3);
+>> [x22,n22] = sigshift(x,n,2); [x22,n22] = sigmult(x,n,x22,n22);
+>> [x2,n2] = sigadd(x21,n21,x22,n22);
+>> subplot(2,1,2); stem(n2,x2); title('Sequence in Example 2.2b')
+>> xlabel('n'); ylabel('x2(n)');
+
+# Mischelleneous:
+>> [1:7, 6:-1:1]    #generrates [1,...,7, 6,...,1]
